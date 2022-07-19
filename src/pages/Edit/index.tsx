@@ -56,7 +56,7 @@ export default function UselessTextInput({navigation}) {
             type: "success",
             text1: "Cadastrado com sucesso!"
           });
-          navigation.navigate("Home");
+          navigation.navigate("Home")
         }catch(error){
             Toast.show({
                 type: "error",
@@ -67,7 +67,8 @@ export default function UselessTextInput({navigation}) {
       }
     
  return (
-    <View style={styles.container}>
+     <View style={styles.container}>
+        <Toast position='bottom'/>
         <SafeAreaView style={styles.content}>
             <Text style={styles.titulo}>Cadastrar Movimento</Text>
             <TextInput

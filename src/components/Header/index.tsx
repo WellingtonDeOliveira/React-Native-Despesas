@@ -5,11 +5,7 @@ import { MotiView, MotiText } from 'moti';
 
 const StatusBarHeight = StatusBar.currentHeight ? StatusBar.currentHeight + 22  : 64;
 
-
 export default function Header({name}){
-    const edit = () => {
-       
-    }
     return(
         <View style={styles.container}>    
             <MotiView 

@@ -1,10 +1,13 @@
-import Toast from "react-native-toast-message";
 import { Routes } from "./src/routes";
+import DateProvider from "./src/context/auth";
+import { NavigationContainer } from "@react-navigation/native";
 
 export default function App() {
     return(
-        <>
-        <Routes />
-        </>
+        <DateProvider>
+            <NavigationContainer>
+                <Routes/>
+            </NavigationContainer>
+        </DateProvider>
     )
 }

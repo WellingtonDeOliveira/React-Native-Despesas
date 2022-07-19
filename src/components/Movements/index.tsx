@@ -1,8 +1,9 @@
-import React, {useState} from 'react';
+import React, {useState, useContext} from 'react';
 import { View, Text, StyleSheet, TouchableOpacity } from 'react-native';
 import { MotiView, AnimatePresence, MotiText } from 'moti';
 import { MaterialIcons } from '@expo/vector-icons';
 
+import { DateContext } from '../../context/auth';
 
 export type MoviProps = {
     id: string;
@@ -17,16 +18,17 @@ type Props = {
     onPress: () => void;
 }
 
-export default function Movements({data, onPress}:Props) {
+export default function Movements({data, onPress}:Props){
+    const {date} = useContext(DateContext);
     const [showValue, setShowValue] = useState(false);
     const time = new Date(data.date);
-
     var valorT = parseFloat(data.valor.replace(',','.')).toFixed(2).toString();
 
+    if(time.getMonth()+1+'/'+time.getFullYear() == date.mes+'/'+date.ano){
     return (
         <View style={styles.master}>
             <TouchableOpacity style={styles.container} onPress={ () => setShowValue(!showValue)}>
-                <Text style={styles.date}>{time.toDateString()}</Text>
+                <Text style={styles.date}>{time.getDate()+'/'+(time.getMonth()+1)+'/'+time.getFullYear()}</Text>
                 
                 <View style={styles.content}>
                     <Text style={styles.label}>{data.titulo}</Text>
@@ -77,6 +79,10 @@ export default function Movements({data, onPress}:Props) {
         </View>
     );
 }
+else{
+    return(null);
+}
+}
 
 const styles = StyleSheet.create({
     master:{
@@ -85,7 +91,6 @@ const styles = StyleSheet.create({
         borderBottomWidth: 0.5,
         borderBottomColor: '#dadada',
         flexDirection: 'row',
-        marfimLeft: '4%'
     },
     container:{
         flex: 1,
